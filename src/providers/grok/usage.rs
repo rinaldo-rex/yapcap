@@ -134,6 +134,7 @@ fn extract_prepaid_balance(config: &BillingConfig) -> Option<ProviderCost> {
             used: balance.val,
             limit: None,
             units: "credits".to_string(),
+            credit_balances: None,
         })
 }
 
@@ -150,6 +151,7 @@ fn extract_on_demand_usage(config: &BillingConfig) -> Option<ExtraUsageState> {
             used,
             limit: Some(cap.val),
             units: "credits".to_string(),
+            credit_balances: None,
         },
     })
 }

@@ -631,10 +631,10 @@ fn extra_usage_cost_bar(
 }
 
 fn cost_section(provider: ProviderId, cost: &ProviderCost) -> Element<'static, Message> {
-    if matches!(
-        provider,
-        ProviderId::Codex | ProviderId::Grok | ProviderId::CommandCode
-    ) {
+    if provider == ProviderId::CommandCode {
+        return super::credit_balances::view(cost.credit_balances.as_ref());
+    }
+    if matches!(provider, ProviderId::Codex | ProviderId::Grok) {
         return credit_section(cost);
     }
     let (primary, iso_tip) = currency_format::format_provider_cost(cost);

@@ -80,11 +80,19 @@ impl UsageHeadline {
     }
 }
 
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq)]
+pub struct CreditBalances {
+    pub plan: Option<f64>,
+    pub extra: f64,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ProviderCost {
     pub used: f64,
     pub limit: Option<f64>,
     pub units: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub credit_balances: Option<CreditBalances>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]

@@ -5,6 +5,7 @@ use crate::model::ProviderId;
 use serde_json::json;
 mod balances;
 mod http;
+mod plan_balances;
 
 fn credits() -> Value {
     json!({

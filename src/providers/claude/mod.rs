@@ -99,6 +99,7 @@ fn claude_snapshot_extra_cost(
         used,
         limit,
         units: currency,
+        credit_balances: None,
     }
 }
 

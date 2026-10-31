@@ -38,6 +38,7 @@ fn parses_billing_fixture_into_snapshot() {
             used: 1500.0,
             limit: None,
             units: "credits".to_string(),
+            credit_balances: None,
         })
     );
     assert_eq!(snapshot.extra_usage, None);
@@ -90,6 +91,7 @@ fn maps_positive_on_demand_cap_to_extra_usage() {
                 used: 25.0,
                 limit: Some(100.0),
                 units: "credits".to_string(),
+                credit_balances: None,
             },
         })
     );

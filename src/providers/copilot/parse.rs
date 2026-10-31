@@ -131,6 +131,7 @@ fn credits_cost(quota: Option<&Quota>) -> Option<ProviderCost> {
         used: (entitlement - remaining) / 100.0,
         limit: Some(entitlement / 100.0),
         units: "USD".to_string(),
+        credit_balances: None,
     })
 }
 
