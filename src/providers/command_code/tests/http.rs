@@ -111,10 +111,14 @@ async fn live_read_only_usage_smoke_test() {
         .await
         .expect("Command Code usage fetch failed");
     assert_eq!(snapshot.provider, ProviderId::CommandCode);
+    let cost = snapshot.provider_cost.expect("credit balance is missing");
+    let balances = cost.credit_balances.expect("separate balances are missing");
+    assert!(cost.used.is_finite() && cost.used == balances.extra);
+    assert!(balances.extra.is_finite() && balances.extra >= 0.0);
     assert!(
-        snapshot
-            .provider_cost
-            .is_some_and(|balance| balance.used.is_finite())
+        balances
+            .plan
+            .is_none_or(|plan| plan.is_finite() && plan >= 0.0)
     );
     assert!(
         snapshot

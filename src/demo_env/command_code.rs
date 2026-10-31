@@ -49,6 +49,10 @@ pub(super) fn accounts(now: DateTime<Utc>) -> Vec<ProviderAccountRuntimeState> {
                     used: 4.0,
                     limit: None,
                     units: "credits".to_string(),
+                    credit_balances: Some(crate::model::CreditBalances {
+                        plan: Some(12.5),
+                        extra: 4.0,
+                    }),
                 }),
                 extra_usage: None,
                 identity: ProviderIdentity {

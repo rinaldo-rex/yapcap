@@ -329,6 +329,7 @@ fn normalize_oauth(payload: CodexUsageResponse) -> Result<UsageSnapshot, CodexEr
                 used,
                 limit: None,
                 units: "credits".to_string(),
+                credit_balances: None,
             }),
             Err(source) => {
                 tracing::warn!(

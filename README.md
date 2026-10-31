@@ -33,7 +33,7 @@ YapCap lives in your COSMIC panel and shows how much of your AI coding quota you
     - **Z.AI Coding Plan** — global personal quota with 5-hour, weekly, and optional MCP windows
     - **Kimi for Coding** — API key usage tracking with weekly and rate-limit windows
     - **OpenCode Go** — API key usage tracking with 5-hour, weekly, and monthly windows
-    - **Command Code** — extra credits and service-reported 5-hour/weekly limits with reset times
+    - **Command Code** — separate plan and extra credit balances, plus service-reported 5-hour/weekly limits with reset times
     - **Grok** — subscription usage shown as a weekly window + available prepaid credits
 - 👥 **Multi-account support** — add, switch, and remove accounts per provider. The popup pages through stored accounts one at a time, while the panel remains fixed-width for the active account.
 - 🔎 **Automatic discovery** — detected providers appear automatically, provider availability updates live, and an empty setup opens Manage providers. Gemini remains opt-in and must be enabled manually.

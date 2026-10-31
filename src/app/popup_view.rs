@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MPL-2.0
 
 mod badges;
+mod credit_balances;
 mod detail;
 mod settings;
 

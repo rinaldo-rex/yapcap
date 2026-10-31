@@ -142,6 +142,7 @@ mod tests {
             used: 1.2,
             limit: Some(20.0),
             units: "EUR".into(),
+            credit_balances: None,
         };
         let (line, iso) = format_provider_cost(&cost);
         assert_eq!(iso, "EUR");
@@ -156,6 +157,7 @@ mod tests {
             used: 3.5,
             limit: None,
             units: "USD".into(),
+            credit_balances: None,
         };
         let (line, iso) = format_provider_cost(&cost);
         assert_eq!(iso, "USD");

@@ -2,7 +2,8 @@
 
 use super::CommandCodeError;
 use crate::model::{
-    ProviderCost, ProviderId, ProviderIdentity, UsageHeadline, UsageSnapshot, UsageWindow,
+    CreditBalances, ProviderCost, ProviderId, ProviderIdentity, UsageHeadline, UsageSnapshot,
+    UsageWindow,
 };
 use chrono::{DateTime, Utc};
 use serde_json::Value;
@@ -13,7 +14,7 @@ pub(super) fn parse(
     mut identity: ProviderIdentity,
     updated_at: DateTime<Utc>,
 ) -> Result<UsageSnapshot, CommandCodeError> {
-    let balance = extra_balance(credits)?;
+    let balances = credit_balances(credits)?;
     identity.plan = subscription
         .and_then(|value| value.get("data"))
         .and_then(|data| data.get("planId"))
@@ -26,13 +27,24 @@ pub(super) fn parse(
         headline: UsageHeadline(0),
         windows: windows(credits),
         provider_cost: Some(ProviderCost {
-            used: balance,
+            used: balances.extra,
             limit: None,
             units: "credits".to_string(),
+            credit_balances: Some(balances),
         }),
         extra_usage: None,
         identity,
     })
+}
+
+fn credit_balances(value: &Value) -> Result<CreditBalances, CommandCodeError> {
+    let extra = extra_balance(value)?;
+    let plan = value
+        .get("credits")
+        .and_then(|balances| balances.get("monthlyCredits"))
+        .map(|value| nonnegative_number(value).ok_or(CommandCodeError::InvalidResponse))
+        .transpose()?;
+    Ok(CreditBalances { plan, extra })
 }
 
 fn extra_balance(value: &Value) -> Result<f64, CommandCodeError> {

@@ -487,6 +487,7 @@ fn snapshot_codex_pro() -> UsageSnapshot {
             used: 540.0,
             limit: None,
             units: "credits".to_string(),
+            credit_balances: None,
         }),
         extra_usage: None,
         identity: ProviderIdentity {
@@ -560,6 +561,7 @@ fn snapshot_claude_primary() -> UsageSnapshot {
                 used: 8.5,
                 limit: Some(20.0),
                 units: "EUR".to_string(),
+                credit_balances: None,
             },
         }),
         identity: ProviderIdentity {
@@ -776,6 +778,7 @@ fn snapshot_copilot_pro() -> UsageSnapshot {
             used: 28.0,
             limit: Some(70.0),
             units: "USD".to_string(),
+            credit_balances: None,
         }),
         extra_usage: None,
         identity: ProviderIdentity {
